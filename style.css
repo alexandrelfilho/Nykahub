@@ -117,3 +117,69 @@ table th {
     margin-top: 20px;
     font-size: 1.1em;
 }
+
+/* 1. LAYOUT DE GRID (para as Builds) */
+.builds-grid {
+    display: grid;
+    /* Define 3 colunas, que terão a mesma largura (1fr) */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+    gap: 25px; /* Espaço entre os cards */
+    margin-top: 30px;
+}
+
+/* Garante que o grid se adapte a telas pequenas (Responsividade) */
+@media (max-width: 768px) {
+    .builds-grid {
+        grid-template-columns: 1fr; /* Em telas pequenas, use apenas 1 coluna */
+    }
+}
+
+/* 2. ESTILO DO CARD (a build individual) */
+.build-card {
+    display: block; /* Garante que o link ocupe o card todo */
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden; /* Garante que a imagem não saia da borda */
+    text-decoration: none; /* Remove o sublinhado do link */
+    color: #333;
+    transition: transform 0.3s, box-shadow 0.3s;
+    background-color: white;
+}
+
+/* Efeito ao passar o mouse */
+.build-card:hover {
+    transform: translateY(-5px); /* Move o card levemente para cima */
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1); /* Aumenta a sombra */
+}
+
+/* Estilo da Imagem (você deve criar uma pasta 'img' e colocar as imagens lá) */
+.build-card img {
+    width: 100%;
+    height: 180px; /* Altura fixa para todas as imagens */
+    object-fit: cover; /* Garante que a imagem cubra o espaço sem esticar */
+}
+
+.card-info {
+    padding: 15px;
+}
+
+.card-info h3 {
+    margin-top: 0;
+    color: #007bff;
+}
+
+/* 3. ESTILO DAS TAGS (PVM/MVP/WOE) */
+.tag {
+    display: inline-block;
+    padding: 4px 8px;
+    margin-right: 5px;
+    border-radius: 4px;
+    font-size: 0.8em;
+    font-weight: bold;
+    color: white;
+}
+
+/* Cores específicas para as tags */
+.tag.pvm { background-color: #28a745; } /* Verde para PVM */
+.tag.mvp { background-color: #dc3545; } /* Vermelho para MVP */
+.tag.woe { background-color: #ffc107; color: #333; } /* Amarelo/Dourado para WOE */
