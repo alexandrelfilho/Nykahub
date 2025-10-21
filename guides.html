@@ -44,9 +44,12 @@
         
             <h2 class="card-titulo">Rachel Sanctuary</h2>
         
-            <div class="card-video-container">
-                <img src="img/rachel_sanctuary.gif" alt="Gameplay da build Pierce Knight" class="card-video">
-            </div>
+                     <div class="card-video-container">
+                     <img src="img/rachel_sanctuaryjpg.jpg" 
+                         alt="Gameplay da build Pierce Knight" 
+                         class="card-video"
+                         data-gif="img/rachel_sanctuary.gif"> 
+    </div>
         
         
     </a> 
@@ -54,6 +57,26 @@
     </section>
         
     </main>
+        <script>
+            // Seleciona todos os cards de vídeo (os GIFs)
+                const cardVideos = document.querySelectorAll('.card-video');
+
+                    cardVideos.forEach(img => {
+                    // Pega o caminho original (estático) e o caminho do GIF
+                    const staticSrc = img.src;
+                    const gifSrc = img.dataset.gif; // Usa o atributo data-gif que adicionamos
+
+                    // Evento: Mouse entra no card (hover ON)
+                    img.addEventListener('mouseenter', () => {
+                        img.src = gifSrc; // Troca a imagem para o GIF animado
+                    });
+
+                    // Evento: Mouse sai do card (hover OFF)
+                    img.addEventListener('mouseleave', () => {
+                        img.src = staticSrc; // Volta para a imagem estática (PNG/JPG)
+                    });
+    });
+</script>
     
 </body>
 </html>

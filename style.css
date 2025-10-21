@@ -177,7 +177,8 @@ ul li span, ol li span {
 /* Estilo geral do link (o card inteiro é clicável) */
 .card-build {
     display: block; /* Garante que o link ocupe o espaço */
-    max-width: 350px; /* Largura máxima para cada card */
+    max-width: 280px; /* Largura máxima para cada card */
+    min-width: 280px;
     margin: 0px auto; /* Centraliza o card individualmente (temporário) */
     text-align: center; /* Centraliza o texto dentro do card */
     text-decoration: none; /* Remove o sublinhado do link */
