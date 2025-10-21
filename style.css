@@ -1,0 +1,119 @@
+/* 1. FIXAR A BARRA NO TOPO */
+.navbar-fixa {
+    /* Define o posicionamento FIXO */
+    position: fixed; 
+    
+    /* Posição: 0 pixels do topo */
+    top: 0; 
+    
+    /* Garante que ocupe a largura total da tela */
+    width: 100%; 
+    
+    /* Garante que fique acima de outros elementos ao rolar */
+    z-index: 1000; 
+    
+    /* Estilo Básico */
+    background-color: #1A1A1A; /* Fundo escuro, bom para contraste */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4); /* Sombra suave para destacar */
+}
+
+/* Estilo do container interno para alinhar o logo e o menu */
+nav {
+    display: flex; /* Permite alinhar o logo e o menu lado a lado */
+    justify-content: space-between; /* Espaço entre o logo e o menu */
+    align-items: center;
+    padding: 10px 25px; /* Preenchimento interno */
+}
+
+/* Estilo do Nome do Site */
+.logo {
+    color: #FFD700; /* Cor que lembra ouro (RO) */
+    font-size: 24px;
+    font-weight: bold;
+}
+
+/* 2. MENU PRINCIPAL (LISTA DE LINKS) */
+.menu-principal {
+    list-style: none; /* Remove os marcadores de lista */
+    display: flex; /* Coloca os links na horizontal */
+    margin: 0;
+    padding: 0;
+}
+
+/* Estilo de cada item do menu */
+.menu-principal li {
+    margin-left: 25px; /* Espaço entre os links */
+}
+
+/* Estilo dos Links */
+.menu-principal a {
+    text-decoration: none; /* Remove o sublinhado */
+    color: white; /* Cor branca para o texto */
+    font-size: 16px;
+    padding: 5px 0;
+    transition: color 0.3s; /* Transição suave na mudança de cor */
+}
+
+/* Efeito ao passar o mouse (Hover) */
+.menu-principal a:hover {
+    color: #00BFFF; /* Mude para uma cor de destaque ao passar o mouse */
+}
+
+/* 3. COMPENSAÇÃO DE ESPAÇO */
+/* MUITO IMPORTANTE: Se o menu é fixo, ele sai do fluxo normal da página. 
+   O conteúdo principal precisa de uma margem para não ser escondido sob a barra. */
+.conteudo-principal {
+    /* Ajuste o valor da margem para ser um pouco maior que a altura do seu navbar */
+    margin-top: 60px; 
+    padding: 20px;
+}
+
+/* Container para centralizar o conteúdo do corpo */
+.container {
+    max-width: 1000px; /* Largura máxima para evitar que o texto fique muito esticado em monitores grandes */
+    margin: 0 auto; /* Centraliza o bloco na tela */
+}
+
+/* Estilo para as Seções do Guia */
+.secao-guia {
+    background-color: #f4f4f4; /* Fundo cinza claro para destacar a seção */
+    padding: 20px;
+    margin-bottom: 30px; /* Espaço entre as seções */
+    border-radius: 8px;
+    border-left: 5px solid #00BFFF; /* Linha de destaque na lateral */
+}
+
+.secao-guia h2 {
+    color: #333;
+    border-bottom: 2px solid #ccc;
+    padding-bottom: 5px;
+}
+
+/* Estilo para Tabelas de Stats */
+table {
+    width: 100%;
+    border-collapse: collapse; /* Remove as bordas duplas */
+    margin: 15px 0;
+}
+
+table th, table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+
+table th {
+    background-color: #e2e2e2;
+    font-weight: bold;
+}
+
+/* Caixa de Destaque/Aviso (para Dicas do Nyka) */
+.caixa-aviso {
+    background-color: #FFFFE0; /* Amarelo bem claro */
+    color: #856404; /* Texto escuro para contraste */
+    border: 1px solid #FFC371;
+    padding: 15px;
+    border-radius: 4px;
+    margin-top: 20px;
+    font-size: 1.1em;
+}
