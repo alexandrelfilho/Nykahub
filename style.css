@@ -224,3 +224,13 @@ ul li span, ol li span {
     gap: 30px; /* Espaçamento entre os cards */
     margin-top: 30px;
 }
+
+/* --- ESTILO PARA IMAGEM DE DESTAQUE/BANNER --- */
+.img-destaque {
+    width: 100%; /* Ocupa a largura total do container */
+    max-width: 300px; /* Garante que não estique além do container */
+    height: auto; /* Mantém a proporção da imagem */
+    display: block; /* Remove o espaço indesejado abaixo da imagem */
+    margin: 30px auto; /* Centraliza a imagem e adiciona espaço acima/abaixo */
+    border-radius: 8px; /* Cantos levemente arredondados */
+}
