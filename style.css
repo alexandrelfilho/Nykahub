@@ -1,186 +1,228 @@
-/* 1. FIXAR A BARRA NO TOPO */
-.navbar-fixa {
-    /* Define o posicionamento FIXO */
-    position: fixed; 
-    
-    /* Posição: 0 pixels do topo */
-    top: 0; 
-    
-    /* Garante que ocupe a largura total da tela */
-    width: 100%; 
-    
-    /* Garante que fique acima de outros elementos ao rolar */
-    z-index: 1000; 
-    
-    /* Estilo Básico */
-    background-color: #1A1A1A; /* Fundo escuro, bom para contraste */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4); /* Sombra suave para destacar */
+/* RESET BÁSICO - Zera margens e preenchimentos padrões do navegador */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Garante que padding e border não aumentem o tamanho do elemento */
 }
 
-/* Estilo do container interno para alinhar o logo e o menu */
-nav {
-    display: flex; /* Permite alinhar o logo e o menu lado a lado */
-    justify-content: space-between; /* Espaço entre o logo e o menu */
-    align-items: center;
-    padding: 10px 25px; /* Preenchimento interno */
+/* DEFINIÇÕES GERAIS E PALETA */
+:root {
+    --cor-pergaminho: #FAF5E4;
+    --cor-madeira: rgb(201, 150, 123); 
+    
+    /* 🟢 CORPO DO SITE: Marrom Escuro (para contraste no Pergaminho) */
+    --cor-texto-principal: #3a2f24; 
+    
+    /* 🟢 HEADER/NAVBAR: Branco Puro (para contraste no Terracota) */
+    --cor-texto-header: #fcfff6; 
+    --cor-texto-subheader: #2f3327; 
+    
+    --cor-destaque: #5c543e; /* Cor que você definiu para destaque */
 }
 
-/* Estilo do Nome do Site */
-.logo {
-    color: #FFD700; /* Cor que lembra ouro (RO) */
-    font-size: 24px;
-    font-weight: bold;
-}
+/* ... resto do CSS de body e container ... */
 
-/* 2. MENU PRINCIPAL (LISTA DE LINKS) */
-.menu-principal {
-    list-style: none; /* Remove os marcadores de lista */
-    display: flex; /* Coloca os links na horizontal */
+
+/* 1. ESTILO GERAL DO SITE (BODY) E TIPOGRAFIA */
+body {
+    background-color: var(--cor-pergaminho); 
+    color: var(--cor-texto-principal); /* ✅ CORRETO: Marrom Escuro no corpo */
+    font-family: 'Lusitana', serif; 
     margin: 0;
     padding: 0;
 }
 
-/* Estilo de cada item do menu */
-.menu-principal li {
-    margin-left: 25px; /* Espaço entre os links */
-}
-
-/* Estilo dos Links */
-.menu-principal a {
-    text-decoration: none; /* Remove o sublinhado */
-    color: white; /* Cor branca para o texto */
-    font-size: 16px;
-    padding: 5px 0;
-    transition: color 0.3s; /* Transição suave na mudança de cor */
-}
-
-/* Efeito ao passar o mouse (Hover) */
-.menu-principal a:hover {
-    color: #00BFFF; /* Mude para uma cor de destaque ao passar o mouse */
-}
-
-/* 3. COMPENSAÇÃO DE ESPAÇO */
-/* MUITO IMPORTANTE: Se o menu é fixo, ele sai do fluxo normal da página. 
-   O conteúdo principal precisa de uma margem para não ser escondido sob a barra. */
-.conteudo-principal {
-    /* Ajuste o valor da margem para ser um pouco maior que a altura do seu navbar */
-    margin-top: 60px; 
-    padding: 20px;
-}
-
-/* Container para centralizar o conteúdo do corpo */
+/* Container para o conteúdo não ficar esticado na tela */
 .container {
-    max-width: 1000px; /* Largura máxima para evitar que o texto fique muito esticado em monitores grandes */
-    margin: 0 auto; /* Centraliza o bloco na tela */
+    max-width: 960px; /* Largura máxima para evitar que o texto fique muito esticado em telas grandes */
+    margin: 0 auto; /* 🟢 ESSENCIAL: Centraliza o bloco na tela */
+    padding: 0 20px; /* Padding horizontal para telas menores */
 }
 
-/* Estilo para as Seções do Guia */
-.secao-guia {
-    background-color: #f4f4f4; /* Fundo cinza claro para destacar a seção */
-    padding: 20px;
-    margin-bottom: 30px; /* Espaço entre as seções */
-    border-radius: 8px;
-    border-left: 5px solid #00BFFF; /* Linha de destaque na lateral */
+/* Centraliza os Títulos */
+h1, h2, h3 {
+    font-family: 'Cinzel', serif;
+    color: var(--cor-texto-principal); /* ✅ TÍTULOS USAM A COR PRINCIPAL (Marrom Escuro) */
+    text-align: center;
 }
 
-.secao-guia h2 {
-    color: #333;
-    border-bottom: 2px solid #ccc;
-    padding-bottom: 5px;
+/* Garante que o Nome do Jogo use a fonte Cinzel */
+.logo-area .nome-jogo {
+    font-family: 'Cinzel', serif;
 }
 
-/* Estilo para Tabelas de Stats */
-table {
-    width: 100%;
-    border-collapse: collapse; /* Remove as bordas duplas */
-    margin: 15px 0;
+/* 1. BARRA SUPERIOR (FIXA) - LOGO E JOGO */
+.navbar-topo {
+    /* Define a barra como fixa no topo */
+    position: fixed; 
+    top: 0; 
+    width: 100%; 
+    z-index: 1000; 
+    
+    background-color: var(--cor-madeira); 
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1); 
+    padding: 5px 0;
 }
 
-table th, table td {
-    border: 1px solid #ddd;
-    padding: 10px;
-    text-align: left;
+.topo-conteudo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-table th {
-    background-color: #e2e2e2;
+.logo-area {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    /* ✅ MUDANÇA: Usa o Branco do Header */
+    color: var(--cor-texto-header); 
     font-weight: bold;
+    font-size: 1.5em;
 }
 
-/* Caixa de Destaque/Aviso (para Dicas do Nyka) */
-.caixa-aviso {
-    background-color: #FFFFE0; /* Amarelo bem claro */
-    color: #856404; /* Texto escuro para contraste */
-    border: 1px solid #FFC371;
-    padding: 15px;
+.logo-img {
+    height: 50px; /* Altura da sua logo */
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.nome-jogo {
+    color: var(--cor-texto-header); /* ✅ AGORA É BRANCO */
+}
+
+
+/* 2. BARRA SECUNDÁRIA (MENU DE LINKS) */
+.navbar-secundaria {
+    /* Não é fixa, mas deve ter um fundo */
+    background-color: #d1bda2; /* Um tom um pouco mais escuro para separação */
+    
+    /* Posição após a barra fixa. IMPORTANTE: Altura da barra superior (60px) */
+    position: fixed; 
+    top: 60px; /* Ajuste este valor se a sua logo for maior que 40px + padding */
+    width: 100%;
+    z-index: 999; /* Fica abaixo da barra topo */
+    border-top: 1px solid var(--cor-madeira);
+}
+
+.menu-principal {
+    list-style: none; /* 🟢 ESSENCIAL: Isso remove os pontos */
+    display: flex; 
+    justify-content: center; 
+    margin: 0;
+    padding: 3px 0; 
+}
+
+.menu-principal li {
+    margin: 0 40px; 
+}
+
+.menu-principal a {
+    text-decoration: none; 
+    /* ✅ MUDANÇA: Usa o Branco do Header */
+    color: var(--cor-texto-header); 
+    font-size: 1em;
+    font-weight: bold;
+    padding-bottom: 5px; 
+    transition: color 0.3s, border-bottom 0.3s;
+}
+
+.menu-principal a:hover {
+    /* O hover usa a cor de destaque (Marrom Escuro Forte) */
+    color: var(--cor-destaque); 
+    border-bottom: 3px solid var(--cor-destaque);
+}
+
+
+/* 3. COMPENSAÇÃO DE ESPAÇO (AJUSTADA) */
+/* Agora o conteúdo deve ser empurrado pela altura das DUAS barras */
+.conteudo-principal {
+    /* Altura da barra superior (60px) + Altura da barra secundária (aprox 40px) = 100px */
+    margin-top: 105px; 
+    padding-top: 20px;
+    text-align: center; 
+}
+
+/* AJUSTES DE LEITURA E ESPAÇAMENTO */
+p {
+    line-height: 1.7; /* Aumenta o espaço entre as linhas para facilitar a leitura */
+    margin-bottom: 1.2em; /* Espaço após cada parágrafo */
+}
+
+/* Estilo para Listas (Útil para listar habilidades e itens) */
+ul, ol {
+    margin: 15px 0;
+    padding-left: 25px; 
+}
+
+ul li {
+    margin-bottom: 5px;
+    list-style-type: none; /* ⚠️ ESTA É A LINHA QUE CRIA O QUADRADINHO! */
+    color: var(--cor-destaque); 
+}
+ul li span, ol li span {
+    color: var(--cor-texto-principal); /* ✅ CORRIGIDO: Usa a variável correta para o corpo */
+}
+
+/* --- LAYOUT DE CARDS PARA BUILDS --- */
+
+/* Container para o Vídeo/GIF */
+.card-video-container {
+    width: 100%; /* ✅ Ocupa 100% da largura do card */
+    margin: 0 auto; /* ✅ Garante centralização e elimina margens laterais */
+    overflow: hidden; 
     border-radius: 4px;
-    margin-top: 20px;
-    font-size: 1.1em;
+    padding: 0; /* ✅ Remove padding interno */
 }
 
-/* 1. LAYOUT DE GRID (para as Builds) */
-.builds-grid {
+/* Estilo geral do link (o card inteiro é clicável) */
+.card-build {
+    display: block; /* Garante que o link ocupe o espaço */
+    max-width: 350px; /* Largura máxima para cada card */
+    margin: 0px auto; /* Centraliza o card individualmente (temporário) */
+    text-align: center; /* Centraliza o texto dentro do card */
+    text-decoration: none; /* Remove o sublinhado do link */
+    
+    /* Estilo de caixa (pergaminho claro, borda rústica) */
+    background-color: #F8F3E9;
+    border: 1px solid var(--cor-madeira);
+    border-radius: 8px;
+    box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card-build:hover {
+    transform: translateY(-5px); /* Efeito de elevação ao passar o mouse */
+    box-shadow: 6px 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* Título do Card */
+.card-titulo {
+    font-size: 1.4em;
+    padding: 12px 10px 5px;
+    margin-bottom: 0;
+    color: var(--cor-destaque);
+    border-bottom: 2px solid var(--cor-madeira);
+    /* 🟢 CORREÇÃO: Remove qualquer margem abaixo do título */
+    margin-bottom: 0;
+}
+
+.card-video {
+    width: 100%; 
+    height: auto;
+    display: block; 
+    margin: 0; 
+    padding: 0; 
+    
+    /* ✅ CORREÇÃO: Mata o espaço residual da linha de base */
+    vertical-align: top;
+    
+}
+
+
+/* Estilo para alinhar os cards em colunas (GRID) - Para uso futuro */
+.catalogo-builds {
     display: grid;
-    /* Define 3 colunas, que terão a mesma largura (1fr) */
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
-    gap: 25px; /* Espaço entre os cards */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Cria colunas que se ajustam */
+    gap: 30px; /* Espaçamento entre os cards */
     margin-top: 30px;
 }
-
-/* Garante que o grid se adapte a telas pequenas (Responsividade) */
-@media (max-width: 768px) {
-    .builds-grid {
-        grid-template-columns: 1fr; /* Em telas pequenas, use apenas 1 coluna */
-    }
-}
-
-/* 2. ESTILO DO CARD (a build individual) */
-.build-card {
-    display: block; /* Garante que o link ocupe o card todo */
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    overflow: hidden; /* Garante que a imagem não saia da borda */
-    text-decoration: none; /* Remove o sublinhado do link */
-    color: #333;
-    transition: transform 0.3s, box-shadow 0.3s;
-    background-color: white;
-}
-
-/* Efeito ao passar o mouse */
-.build-card:hover {
-    transform: translateY(-5px); /* Move o card levemente para cima */
-    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1); /* Aumenta a sombra */
-}
-
-/* Estilo da Imagem (você deve criar uma pasta 'img' e colocar as imagens lá) */
-.build-card img {
-    width: 100%;
-    height: 180px; /* Altura fixa para todas as imagens */
-    object-fit: cover; /* Garante que a imagem cubra o espaço sem esticar */
-}
-
-.card-info {
-    padding: 15px;
-}
-
-.card-info h3 {
-    margin-top: 0;
-    color: #007bff;
-}
-
-/* 3. ESTILO DAS TAGS (PVM/MVP/WOE) */
-.tag {
-    display: inline-block;
-    padding: 4px 8px;
-    margin-right: 5px;
-    border-radius: 4px;
-    font-size: 0.8em;
-    font-weight: bold;
-    color: white;
-}
-
-/* Cores específicas para as tags */
-.tag.pvm { background-color: #28a745; } /* Verde para PVM */
-.tag.mvp { background-color: #dc3545; } /* Vermelho para MVP */
-.tag.woe { background-color: #ffc107; color: #333; } /* Amarelo/Dourado para WOE */
-
