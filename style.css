@@ -27,7 +27,7 @@
 body {
     background-color: var(--cor-pergaminho); 
     color: var(--cor-texto-principal); /* ✅ CORRETO: Marrom Escuro no corpo */
-    font-family: 'Lusitana', serif; 
+    font-family: 'Lusitana', serif;
     margin: 0;
     padding: 0;
 }
@@ -54,20 +54,20 @@ h1, h2, h3 {
 /* 1. BARRA SUPERIOR (FIXA) - LOGO E JOGO */
 .navbar-topo {
     /* Define a barra como fixa no topo */
-    position: fixed; 
-    top: 0; 
-    width: 100%; 
-    z-index: 1000; 
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
     
-    background-color: var(--cor-madeira); 
-    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1); 
+    background-color: var(--cor-madeira);
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
     padding: 5px 0;
 }
 
 .topo-conteudo {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: center; /* AJUSTE CRUCIAL: Força o conteúdo a ficar no centro exato usando Flexbox */
 }
 
 .logo-area {
@@ -75,19 +75,44 @@ h1, h2, h3 {
     align-items: center;
     text-decoration: none;
     /* ✅ MUDANÇA: Usa o Branco do Header */
-    color: var(--cor-texto-header); 
+    color: var(--cor-texto-header);
     font-weight: bold;
     font-size: 1.5em;
 }
 
+/* 💥 ATUALIZADO: Container para o trio de logos */
+.logo-container-trio {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* 🔑 CORREÇÃO: Centraliza os 3 logos como um grupo, garantindo simetria */
+    gap: 15px; /* 🔑 NOVO: Espaçamento uniforme e controlado entre os logos */
+    max-width: 250px; /* Mantém a largura máxima */
+    margin: 0; /* Confia na centralização do pai (.topo-conteudo) */
+}
+
+/* Estilo para as logos (todas as 3) */
+.logo-trio-img {
+    height: 50px; /* Altura padrão para todas as logos */
+    width: auto;
+    transition: transform 0.3s ease;
+    padding: 0; /* 🔑 AJUSTE: Remove padding que poderia causar offset, usando 'gap' no pai para espaçamento */
+}
+
+.logo-trio-img:hover {
+    transform: scale(1.1); /* Efeito de zoom */
+}
+
+/* Oculta os estilos antigos que não serão mais usados */
 .logo-img {
     height: 50px; /* Altura da sua logo */
     margin-left: 20px;
     margin-right: 20px;
+    display: none; 
 }
 
 .nome-jogo {
     color: var(--cor-texto-header); /* ✅ AGORA É BRANCO */
+    display: none;
 }
 
 
@@ -97,7 +122,7 @@ h1, h2, h3 {
     background-color: #d1bda2; /* Um tom um pouco mais escuro para separação */
     
     /* Posição após a barra fixa. IMPORTANTE: Altura da barra superior (60px) */
-    position: fixed; 
+    position: fixed;
     top: 60px; /* Ajuste este valor se a sua logo for maior que 40px + padding */
     width: 100%;
     z-index: 999; /* Fica abaixo da barra topo */
@@ -106,29 +131,29 @@ h1, h2, h3 {
 
 .menu-principal {
     list-style: none; /* 🟢 ESSENCIAL: Isso remove os pontos */
-    display: flex; 
-    justify-content: center; 
+    display: flex;
+    justify-content: center;
     margin: 0;
-    padding: 3px 0; 
+    padding: 3px 0;
 }
 
 .menu-principal li {
-    margin: 0 40px; 
+    margin: 0 40px;
 }
 
 .menu-principal a {
-    text-decoration: none; 
+    text-decoration: none;
     /* ✅ MUDANÇA: Usa o Branco do Header */
-    color: var(--cor-texto-header); 
+    color: var(--cor-texto-header);
     font-size: 1em;
     font-weight: bold;
-    padding-bottom: 5px; 
+    padding-bottom: 5px;
     transition: color 0.3s, border-bottom 0.3s;
 }
 
 .menu-principal a:hover {
     /* O hover usa a cor de destaque (Marrom Escuro Forte) */
-    color: var(--cor-destaque); 
+    color: var(--cor-destaque);
     border-bottom: 3px solid var(--cor-destaque);
 }
 
@@ -137,9 +162,9 @@ h1, h2, h3 {
 /* Agora o conteúdo deve ser empurrado pela altura das DUAS barras */
 .conteudo-principal {
     /* Altura da barra superior (60px) + Altura da barra secundária (aprox 40px) = 100px */
-    margin-top: 105px; 
+    margin-top: 105px;
     padding-top: 20px;
-    text-align: center; 
+    text-align: center;
 }
 
 /* AJUSTES DE LEITURA E ESPAÇAMENTO */
@@ -151,13 +176,13 @@ p {
 /* Estilo para Listas (Útil para listar habilidades e itens) */
 ul, ol {
     margin: 15px 0;
-    padding-left: 25px; 
+    padding-left: 25px;
 }
 
 ul li {
     margin-bottom: 5px;
     list-style-type: none; /* ⚠️ ESTA É A LINHA QUE CRIA O QUADRADINHO! */
-    color: var(--cor-destaque); 
+    color: var(--cor-destaque);
 }
 ul li span, ol li span {
     color: var(--cor-texto-principal); /* ✅ CORRIGIDO: Usa a variável correta para o corpo */
@@ -166,12 +191,15 @@ ul li span, ol li span {
 /* --- LAYOUT DE CARDS PARA BUILDS --- */
 
 /* Container para o Vídeo/GIF */
+/* Container para o Vídeo/GIF */
 .card-video-container {
-    width: 100%; /* ✅ Ocupa 100% da largura do card */
-    margin: 0 auto; /* ✅ Garante centralização e elimina margens laterais */
-    overflow: hidden; 
+    width: 100%;
+    margin: 0 auto;
+    overflow: hidden;
     border-radius: 4px;
-    padding: 0; /* ✅ Remove padding interno */
+    padding: 0;
+    /* 💥 NOVO: Definir altura (ajustada para o espaço dentro do card) */
+    height: 280px; /* Valor sugerido. Ajuste se precisar de mais/menos altura. */
 }
 
 /* Estilo geral do link (o card inteiro é clicável) */
@@ -208,13 +236,14 @@ ul li span, ol li span {
 }
 
 .card-video {
-    width: 100%; 
-    height: auto;
-    display: block; 
-    margin: 0; 
-    padding: 0; 
-
+    width: 100%;
+    height: 100%; /* 💥 MUDANÇA: Ocupa 100% da altura do container */
+    display: block;
+    margin: 0;
+    padding: 0;
     
+    /* 💥 NOVO e ESSENCIAL: Força a imagem a cobrir a área, cortando o excesso nas laterais */
+    object-fit: cover;
 }
 
 
@@ -227,11 +256,34 @@ ul li span, ol li span {
 }
 
 /* --- ESTILO PARA IMAGEM DE DESTAQUE/BANNER --- */
+.imagens-destaque {
+    /* 💥 MUDANÇA ESSENCIAL: 
+       inline-flex usa apenas a largura necessária para o conteúdo (as duas imagens + gap),
+       e o margin: auto pode centralizar esse bloco.
+    */
+    display: inline-flex;
+    
+    /* Esta linha NÃO precisa de 'justify-content: center;' com inline-flex */
+    /* justify-content: center; */
+    
+    align-items: center;
+    gap: 10px;
+    
+    /* 🔑 ESSENCIAL: Centraliza o bloco inline-flex na tela */
+    margin: 30px auto;
+    
+    flex-wrap: wrap;
+}
+
 .img-destaque {
-    width: 100%; /* Ocupa a largura total do container */
-    max-width: 300px; /* Garante que não estique além do container */
-    height: auto; /* Mantém a proporção da imagem */
-    display: block; /* Remove o espaço indesejado abaixo da imagem */
-    margin: 30px auto; /* Centraliza a imagem e adiciona espaço acima/abaixo */
-    border-radius: 8px; /* Cantos levemente arredondados */
+    /* Ajuste essencial para centralizar qualquer imagem
+       que use esta classe, como em 'construction.html'
+    */
+    display: block; /* Transforma a imagem em um elemento de bloco */
+    margin: 0 auto; /* Centraliza o elemento de bloco horizontalmente */
+    
+    width: 100%;
+    max-width: 250px; /* Ou o max-width que você definiu para ela */
+    height: auto;
+    border-radius: 8px;
 }
