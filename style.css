@@ -298,20 +298,35 @@ ul li span, ol li span {
     flex-wrap: wrap;
 }
 
+.imagens-destaque a:hover .img-destaque,
+.link-site-oficial a:hover .img-destaque, /* Para myth.webp se você adicionou img-destaque no HTML */
+.link-site-oficial a:hover .imagem-link-oficial { /* Para myth.webp se ele só tem imagem-link-oficial */
+    transform: scale(1.05); /* Zoom sutil de 5% */
+}
+
+.link-site-oficial a {
+    /* Faz o link se comportar como um bloco inline, limitando sua largura */
+    display: inline-block;
+    max-width: 250px; 
+}
+
 .img-destaque {
-    /* Ajuste essencial para centralizar qualquer imagem
-       que use esta classe, como em 'construction.html'
-    */
-    display: block; /* Transforma a imagem em um elemento de bloco */
-    margin: 0 auto; /* Centraliza o elemento de bloco horizontalmente */
+    /* Ajuste essencial para centralizar qualquer imagem */
+    display: block;
+    margin: 0 auto;
     
     width: 100%;
-    max-width: 250px; /* Ou o max-width que você definiu para ela */
+    max-width: 250px;
     height: auto;
     border-radius: 8px;
+    
+    /* 🔑 ESSENCIAL: Adiciona a transição suave para o zoom */
+    transition: transform 0.3s ease; 
 }
 
 .imagem-link-oficial {
+    max-width: 110px;
+    max-height: auto;
     padding-top: 25px;
 }
 
