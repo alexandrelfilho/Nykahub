@@ -390,6 +390,7 @@ ul li span, ol li span {
 .construction-img {
     display: block;
     margin: 30px auto; /* Centraliza e adiciona espaço */
-    max-width: 12vw;  /* Limita o tamanho máximo */
+    max-width: 230px;  /* Limita o tamanho máximo */
     height: auto;
+    border-radius: 30px;
 }
