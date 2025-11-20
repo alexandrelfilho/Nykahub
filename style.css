@@ -1,137 +1,174 @@
-/* RESET BÁSICO - Zera margens e preenchimentos padrões do navegador */
+/* =========================================================================
+   1. RESET E VARIÁVEIS GERAIS
+   ========================================================================= */
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box; /* Garante que padding e border não aumentem o tamanho do elemento */
+    box-sizing: border-box;
 }
 
-/* DEFINIÇÕES GERAIS E PALETA */
 :root {
+    /* Paleta Principal (Modo Claro) */
     --cor-pergaminho: #FAF5E4;
     --cor-madeira: rgb(201, 150, 123); 
-    
-    /* 🟢 CORPO DO SITE: Marrom Escuro (para contraste no Pergaminho) */
     --cor-texto-principal: #3a2f24; 
-    
-    /* 🟢 HEADER/NAVBAR: Branco Puro (para contraste no Terracota) */
     --cor-texto-header: #fcfff6; 
     --cor-texto-subheader: #2f3327; 
+    --cor-destaque: #5c543e; 
+
+    /* Modo Claro (Variáveis de Layout Padrão) */
+    --background-color: var(--cor-pergaminho);
+    --text-color: var(--cor-texto-principal);
+    --link-color: var(--cor-destaque);
+    --header-topo-bg: var(--cor-madeira);
+    --header-secundaria-bg: #d1bda2; 
+
+    /* Variáveis para Cards (builds/guides) */
+    --card-background: #F8F3E9;
+    --card-border: var(--cor-madeira);
     
-    --cor-destaque: #5c543e; /* Cor que você definiu para destaque */
+    /* NOVO: Variáveis para Seções de Conteúdo (monk_tss) */
+    --build-section-bg: #F8F3E9;
+    --build-section-border: var(--cor-madeira);
 }
 
-/* ... resto do CSS de body e container ... */
+/* Modo Noturno */
+body.dark-mode {
+    --background-color: #1a1a1a; 
+    --text-color: #f4f4f4; 
+    --link-color: #90b3ff; 
+    --header-topo-bg: #2a2a2a; 
+    --header-secundaria-bg: #404040;
+    --h1-dark-color: #fde9b2; 
+    --h2-dark-color: #fdebba; 
+    
+    /* Variáveis para Cards (builds/guides) */
+    --card-background: #333333; 
+    --card-border: #666666;     
+    
+    /* NOVO: Variáveis para Seções de Conteúdo (monk_tss) */
+    --build-section-bg: #333333; 
+    --build-section-border: #666666;
+}
 
-
-/* 1. ESTILO GERAL DO SITE (BODY) E TIPOGRAFIA */
+/* =========================================================================
+   2. ESTILOS GERAIS (BODY, TIPOGRAFIA)
+   ========================================================================= */
 body {
-    background-color: var(--cor-pergaminho); 
-    color: var(--cor-texto-principal);
-    /* *** MODIFICAÇÃO PRINCIPAL: 
-    Lusitana (muito serifada) é substituída por Open Sans (limpa, sans-serif) 
-    Ou por Source Serif Pro se você preferir manter a serif, mas mais limpa.
-    */
-    font-family: 'Open Sans', sans-serif; /* ✅ NOVO: Mais limpo e fácil de ler */
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-family: 'Open Sans', sans-serif;
+    transition: background-color 0.3s, color 0.3s;
     margin: 0;
     padding: 0;
 }
 
-/* Centraliza os Títulos */
 h1, h2, h3 {
-    /* Mantenha Cinzel para um visual clássico de "título", 
-    ou mude para Source Serif Pro para uma versão mais limpa de serif.
-    VOU MANTER CINZEL para manter a distinção entre título e corpo.
-    */
     font-family: 'Open Sans', sans-serif; 
-    color: var(--cor-texto-principal);
+    color: var(--text-color);
     text-align: center;
 }
 
-/* Garante que o Nome do Jogo use a fonte Cinzel */
-.logo-area .nome-jogo {
-    font-family: 'Cinzel', serif; 
+body.dark-mode h1:first-of-type {
+    color: var(--h1-dark-color);
+    transition: color 0.3s;
 }
 
-/* 1. BARRA SUPERIOR (FIXA) - LOGO E JOGO */
+body.dark-mode h2:first-of-type {
+    color: var(--h2-dark-color);
+    transition: color 0.3s;
+}
+
+p, ul, ol {
+    font-family: 'Open Sans', sans-serif;
+    line-height: 1.7;
+    margin-bottom: 1.2em;
+}
+
+ul, ol {
+    margin: 15px 0;
+    padding-left: 25px;
+}
+
+ul li {
+    margin-bottom: 5px;
+    list-style-type: none; 
+    color: var(--cor-destaque);
+}
+
+ul li span, ol li span {
+    color: var(--text-color);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+/* =========================================================================
+   3. HEADERS E NAVEGAÇÃO
+   ========================================================================= */
 .navbar-topo {
-    /* Define a barra como fixa no topo */
     position: fixed;
     top: 0;
     width: 100%;
     z-index: 1000;
-    
-    background-color: var(--cor-madeira);
+    background-color: var(--header-topo-bg);
     box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
     padding: 5px 0;
+    transition: background-color 0.3s;
 }
 
 .topo-conteudo {
     display: flex;
     align-items: center;
-    justify-content: center; /* AJUSTE CRUCIAL: Força o conteúdo a ficar no centro exato usando Flexbox */
+    justify-content: center;
 }
 
 .logo-area {
     display: flex;
     align-items: center;
     text-decoration: none;
-    /* ✅ MUDANÇA: Usa o Branco do Header */
     color: var(--cor-texto-header);
     font-weight: bold;
     font-size: 1.5em;
 }
 
-/* 💥 ATUALIZADO: Container para o trio de logos */
 .logo-container-trio {
     display: flex;
     align-items: center;
-    justify-content: center; /* 🔑 CORREÇÃO: Centraliza os 3 logos como um grupo, garantindo simetria */
-    gap: 15px; /* 🔑 NOVO: Espaçamento uniforme e controlado entre os logos */
-    max-width: 250px; /* Mantém a largura máxima */
-    margin: 0; /* Confia na centralização do pai (.topo-conteudo) */
+    justify-content: center; 
+    gap: 15px; 
+    max-width: 250px;
+    margin: 0;
 }
 
-/* Estilo para as logos (todas as 3) */
 .logo-trio-img {
-    height: 50px; /* Altura padrão para todas as logos */
+    height: 50px; 
     width: auto;
     transition: transform 0.3s ease;
-    padding: 0; /* 🔑 AJUSTE: Remove padding que poderia causar offset, usando 'gap' no pai para espaçamento */
+    padding: 0; 
 }
 
 .logo-trio-img:hover {
-    transform: scale(1.1); /* Efeito de zoom */
+    transform: scale(1.1);
 }
 
-/* Oculta os estilos antigos que não serão mais usados */
-.logo-img {
-    height: 50px; /* Altura da sua logo */
-    margin-left: 20px;
-    margin-right: 20px;
-    display: none; 
-}
+/* Botão do Tema - (ESTE FOI MOVIDO PARA #floating-theme-toggle) */
 
-.nome-jogo {
-    color: var(--cor-texto-header); /* ✅ AGORA É BRANCO */
-    display: none;
-}
-
-
-/* 2. BARRA SECUNDÁRIA (MENU DE LINKS) */
 .navbar-secundaria {
-    /* Não é fixa, mas deve ter um fundo */
-    background-color: #d1bda2; 
-    
-    /* Posição após a barra fixa. IMPORTANTE: Altura da barra superior (60px) */
+    background-color: var(--header-secundaria-bg); 
     position: fixed;
     top: 60px;
     width: 100%;
     z-index: 999; 
     border-top: 1px solid var(--cor-madeira);
+    transition: background-color 0.3s;
 }
 
 .menu-principal {
-    list-style: none; /* 🟢 ESSENCIAL: Isso remove os pontos */
+    list-style: none;
     display: flex;
     justify-content: center;
     margin: 0;
@@ -149,179 +186,156 @@ h1, h2, h3 {
     font-weight: bold;
     padding-bottom: 5px;
     transition: color 0.3s, border-bottom 0.3s;
-    /* 🔑 CORREÇÃO: Add the font here, as it's a specific link style */
     font-family: 'Open Sans', sans-serif; 
 }
 
 .menu-principal a:hover {
-    /* O hover usa a cor de destaque (Marrom Escuro Forte) */
     color: var(--cor-destaque);
 }
 
-
-/* 3. COMPENSAÇÃO DE ESPAÇO (AJUSTADA) */
-/* Agora o conteúdo deve ser empurrado pela altura das DUAS barras */
+/* Compensa a altura das duas navbars fixas */
 .conteudo-principal {
-    /* Altura da barra superior (60px) + Altura da barra secundária (aprox 40px) = 100px */
     margin-top: 105px;
     padding-top: 20px;
     text-align: center;
 }
 
-/* AJUSTES DE LEITURA E ESPAÇAMENTO */
-p {
-    /* 🔑 CORREÇÃO: Add the font here, as it's often more specific than the body rule */
-    font-family: 'Open Sans', sans-serif;
-    line-height: 1.7; /* Aumenta o espaço entre as linhas para facilitar a leitura */
-    margin-bottom: 1.2em; /* Espaço após cada parágrafo */
+.conteudo-principal-build {
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px;
 }
 
-/* Estilo para Listas (Útil para listar habilidades e itens) */
-ul, ol {
-    margin: 15px 0;
-    padding-left: 25px;
-    /* 🔑 CORREÇÃO: Add the font here for lists */
-    font-family: 'Open Sans', sans-serif;
+.list-attributes {
+    text-align: left; 
+    padding: 0 20px;
 }
 
-ul li {
-    margin-bottom: 5px;
-    list-style-type: none; 
-    color: var(--cor-destaque);
-}
-ul li span, ol li span {
-    color: var(--cor-texto-principal); 
+.list-recommendation {
+    text-align: left; 
+    padding: 0 70px;
 }
 
-/* --- LAYOUT DE CARDS PARA BUILDS --- */
-
-/* Container para o Vídeo/GIF */
-/* Container para o Vídeo/GIF */
-.card-video-container {
-    width: 100%;
-    margin: 0 auto;
-    overflow: hidden;
-    border-radius: 4px;
-    padding: 0;
-    /* 💥 NOVO: Definir altura (ajustada para o espaço dentro do card) */
-    height: 280px; /* Valor sugerido. Ajuste se precisar de mais/menos altura. */
+.text-centered {
+    text-align: center;
+    padding: 0 70px;
 }
 
-/* Estilo geral do link (o card inteiro é clicável) */
+.build-media-container.no-extra-space {
+    margin-bottom: 0;
+}
+
+/* =========================================================================
+   3.5. BOTÃO DE TEMA FLUTUANTE
+   ========================================================================= */
+#floating-theme-toggle {
+    position: fixed;
+    top: 15px;      
+    right: 15px;    
+    z-index: 1010; 
+    transition: transform 0.3s ease; 
+}
+
+/* Ajuste no Botão (Garantir que ele não tenha margens indesejadas) */
+#theme-toggle {
+    cursor: pointer;
+    font-size: 1.5rem;
+    border: none;
+    background: transparent; 
+    padding: 5px;
+    color: var(--text-color); 
+    transition: color 0.3s;
+    margin-left: 0 !important; 
+}
+
+/* =========================================================================
+   4. LAYOUT DE CARDS (builds.html, guides.html)
+   ========================================================================= */
+.catalogo-builds {
+    display: flex;
+    flex-wrap: wrap; 
+    justify-content: center; 
+    gap: 30px; 
+    margin-top: 30px;
+}
+
 .card-build {
     display: block; 
     max-width: 280px;
     min-width: 280px;
-    
-    /* 🔑 CORREÇÃO: Remove o margin: 0px auto; que era usado para centralizar individualmente. 
-       Agora, o pai (.catalogo-builds) faz o trabalho de centralizar o grupo. */
     margin: 0; 
-    
     text-align: center; 
     text-decoration: none;
     
-    /* Estilo de caixa (pergaminho claro, borda rústica) */
-    background-color: #F8F3E9;
-    border: 1px solid var(--cor-madeira);
+    background-color: var(--card-background);
+    border: 1px solid var(--card-border); 
+    
     border-radius: 8px;
     box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s, box-shadow 0.3s;
+    transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s, border-color 0.3s;
 }
 
 .card-build:hover {
-    transform: translateY(-5px); /* Efeito de elevação ao passar o mouse */
+    transform: translateY(-5px);
     box-shadow: 6px 6px 10px rgba(0, 0, 0, 0.15);
 }
 
-/* Título do Card */
 .card-titulo {
     font-size: 1.4em;
     padding: 12px 10px 5px;
     margin-bottom: 0;
     color: var(--cor-destaque);
     border-bottom: 2px solid var(--cor-madeira);
-    /* 🟢 CORREÇÃO: Remove qualquer margem abaixo do título */
-    margin-bottom: 0;
+}
+
+.card-video-container {
+    width: 100%;
+    margin: 0 auto;
+    overflow: hidden;
+    border-radius: 4px;
+    padding: 0;
+    height: 280px; 
 }
 
 .card-video {
     width: 100%;
-    height: 100%; /* 💥 MUDANÇA: Ocupa 100% da altura do container */
+    height: 100%; 
     display: block;
     margin: 0;
     padding: 0;
-    
-    /* 💥 NOVO e ESSENCIAL: Força a imagem a cobrir a área, cortando o excesso nas laterais */
     object-fit: cover;
 }
 
 
-/* Estilo para alinhar os cards em colunas (GRID) - Para uso futuro */
-.catalogo-builds {
-    /* 💥 MUDANÇA ESSENCIAL: Troca de GRID para FLEX */
-    display: flex;
-    
-    /* 🔑 CORREÇÃO 1: Permite que os cards quebrem para a próxima linha */
-    flex-wrap: wrap; 
-    
-    /* 🔑 CORREÇÃO 2: Centraliza o GRUPO inteiro de cards na tela */
-    justify-content: center; 
-    
-    /* 🔑 CORREÇÃO 3: Define o espaçamento entre os cards */
-    gap: 30px; 
-    
-    margin-top: 30px;
-    
-    /* 💡 OPCIONAL: Adiciona um max-width para que o grupo não se espalhe infinitamente. 
-       Você pode ajustar este valor ou removê-lo. */
-    /* max-width: 1000px; */ 
-    /* margin: 30px auto; Remove se já estiver centralizado */
-}
-
-/* --- ESTILO PARA IMAGEM DE DESTAQUE/BANNER --- */
+/* =========================================================================
+   5. DESTAQUES E BANNERS (index.html)
+   ========================================================================= */
 .imagens-destaque {
-    /* 💥 MUDANÇA ESSENCIAL: 
-       inline-flex usa apenas a largura necessária para o conteúdo (as duas imagens + gap),
-       e o margin: auto pode centralizar esse bloco.
-    */
     display: inline-flex;
-    
-    /* Esta linha NÃO precisa de 'justify-content: center;' com inline-flex */
-    /* justify-content: center; */
-    
     align-items: center;
     gap: 10px;
-    
-    /* 🔑 ESSENCIAL: Centraliza o bloco inline-flex na tela */
     margin: 30px auto;
-    
     flex-wrap: wrap;
 }
 
-.imagens-destaque a:hover .img-destaque,
-.link-site-oficial a:hover .img-destaque, /* Para myth.webp se você adicionou img-destaque no HTML */
-.link-site-oficial a:hover .imagem-link-oficial { /* Para myth.webp se ele só tem imagem-link-oficial */
-    transform: scale(1.05); /* Zoom sutil de 5% */
-}
-
-.link-site-oficial a {
-    /* Faz o link se comportar como um bloco inline, limitando sua largura */
-    display: inline-block;
-    max-width: 250px; 
-}
-
 .img-destaque {
-    /* Ajuste essencial para centralizar qualquer imagem */
     display: block;
     margin: 0 auto;
-    
     width: 100%;
     max-width: 250px;
     height: auto;
     border-radius: 8px;
-    
-    /* 🔑 ESSENCIAL: Adiciona a transição suave para o zoom */
     transition: transform 0.3s ease; 
+}
+
+.link-site-oficial a {
+    display: inline-block;
+    max-width: 250px; 
+}
+
+.link-site-oficial a:hover .img-destaque {
+    transform: scale(1.05); 
 }
 
 .imagem-link-oficial {
@@ -330,51 +344,52 @@ ul li span, ol li span {
     padding-top: 25px;
 }
 
-/* Estilo para cada Seção de Build (Summary, Attributes, etc.) */
+/* =========================================================================
+   6. SEÇÕES DE BUILD (monk_tss.html)
+   ========================================================================= */
 .build-section-container {
-    /* Cor de fundo ligeiramente diferente para destacar o bloco */
-    background-color: #F8F3E9; 
+    /* CORRIGIDO: Usando variáveis Dark Mode */
+    background-color: var(--build-section-bg); 
+    border: 1px solid var(--build-section-border); 
+    transition: background-color 0.3s, border-color 0.3s;
     
-    /* Borda para dar um visual de 'caixa' ou 'painel' */
-    border: 1px solid var(--cor-madeira); 
-    
-    /* Espaçamento interno */
     padding: 20px 30px; 
-    
-    /* Margem para separar os containers uns dos outros */
     margin-bottom: 40px; 
-    
-    /* Cantos levemente arredondados */
     border-radius: 8px; 
-    
-    /* Sombra sutil para profundidade */
     box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.05); 
-    
-    /* Garante que o texto dentro se alinhe à esquerda, enquanto o TÍTULO (h2) permanece centralizado */
     text-align: left; 
 }
 
-/* Centraliza os títulos H2 DENTRO do container */
-.build-section-container h2 {
+.build-section-container h1, 
+.build-section-container h2, 
+.build-section-container h3 {
     text-align: center;
     margin-top: 0;
     margin-bottom: 15px;
-
     padding-bottom: 10px;
 }
 
-/* --- ESTILO PARA MÍDIA DENTRO DAS SEÇÕES DE BUILD (GIFs/Imagens) --- */
 .build-media-container {
-    /* Centraliza o conteúdo (a imagem/gif) */
     text-align: center; 
-    
-    /* Espaçamento acima e abaixo da imagem */
     margin: 15px 0 20px; 
 }
 
-/* Opcional: Garante que a imagem se ajuste ao container */
 .build-media-container .img-destaque {
-    /* Ajusta o tamanho da imagem dentro do container, se necessário */
     max-width: 400px; 
+    height: auto;
+}
+
+/* NOVO: Aplica o hover (scale) aos banners de destaque */
+.imagens-destaque a:hover .img-destaque {
+    transform: scale(1.05);
+}
+
+/* =========================================================================
+   7. UTILIDADES GERAIS
+   ========================================================================= */
+.construction-img {
+    display: block;
+    margin: 30px auto; /* Centraliza e adiciona espaço */
+    max-width: 12vw;  /* Limita o tamanho máximo */
     height: auto;
 }

@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nykahub - Myth of Yggdrasil</title>
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,27 +13,31 @@
     
     <link rel="stylesheet" href="style.css"> 
 </head>
-
-
 <body>
 
+    <div id="floating-theme-toggle">
+        <button id="theme-toggle">
+            <i class="fas fa-moon"></i>
+        </button>
+    </div>
+
     <header class="navbar-topo">
-        <nav class="container topo-conteudo">
-            
-            <div class="logo-container-trio">
+    <nav class="container topo-conteudo">
+        
+         <div class="logo-container-trio">
                 <a href="monk_tss.html" class="logo-area">
-                    <img src="img/nykamonklogo.png" alt="Logo Nyka Monk" class="logo-trio-img">
+                <img src="img/nykamonklogo.png" alt="Logo Nyka Monk" class="logo-trio-img">
                 </a>
 
                 <a href="index.html" class="logo-area">
-                    <img src="img/logo_nyka.png" alt="Logo Nykahub Central" class="logo-trio-img">
+                <img src="img/logo_nyka.png" alt="Logo Nykahub Central" class="logo-trio-img">
                 </a>
 
                 <a href="construction.html" class="logo-area">
-                    <img src="img/nykaknightlogo.png" alt="Logo Nyka Knight" class="logo-trio-img">
+                <img src="img/nykaknightlogo.png" alt="Logo Nyka Knight" class="logo-trio-img">
                 </a>
             </div>
-            
+        
         </nav>
     </header>
     
@@ -76,31 +81,13 @@
                      </div>
             </a>
     
-    </section>
+        </section>
         
     </main>
-
-
-    <script>
-    // Seleciona todos os cards de vídeo (os GIFs)
-    const cardVideos = document.querySelectorAll('.card-video');
-
-    cardVideos.forEach(img => {
-        // Pega o caminho original (estático) e o caminho do GIF
-        const staticSrc = img.src;
-        const gifSrc = img.dataset.gif; // Usa o atributo data-gif que adicionamos
-
-        // Evento: Mouse entra no card (hover ON)
-        img.addEventListener('mouseenter', () => {
-            img.src = gifSrc; // Troca a imagem para o GIF animado
-        });
-
-        // Evento: Mouse sai do card (hover OFF)
-        img.addEventListener('mouseleave', () => {
-            img.src = staticSrc; // Volta para a imagem estática (PNG/JPG)
-        });
-    });
-</script>
+    
+    <script src="hover_gif.js" defer></script> 
+    
+    <script src="theme-switcher.js"></script> 
     
 </body>
 </html>
